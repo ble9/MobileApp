@@ -38,7 +38,7 @@ class ExpandedDemoScreen extends StatelessWidget {
       Expanded(
       child: Container(
         color: Colors.teal[300],
-        child: Text('BB'),
+        child: Text('BBc'),
       ),
       ),
     ],
