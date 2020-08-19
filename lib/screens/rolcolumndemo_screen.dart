@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RolColumnDemoScreen extends StatelessWidget {
-  static const routeName = '/fontDemoScreen';
+  static const routeName = '/rolcolDemoScreen';
 
   @override
   Widget build(BuildContext context) {

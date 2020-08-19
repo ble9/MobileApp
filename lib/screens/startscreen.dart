@@ -6,16 +6,8 @@ import 'package:map20_Lesson1/screens/imagedemo_screen.dart';
 import 'package:map20_Lesson1/screens/namecardscreen.dart';
 import 'package:map20_Lesson1/screens/rolcolumndemo_screen.dart';
 import 'buttondemo_screen.dart';
-//import '../controller/homepage_controller.dart';
 
 class StartScreen extends StatelessWidget {
-
-//  StartScreenController controller;
-//  BuildContext context;
-//  HomePage(){
-//    controller = StartScreenController(this);
-//
-//  }
 
   static const routeName = '/startScreen';
 

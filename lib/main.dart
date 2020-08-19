@@ -36,8 +36,6 @@ class Lesson1App extends StatelessWidget {
         NameCardScreen.routeName: (context) => NameCardScreen (),
 
       },
-      // title: 'Lesson1',
-      // home: HomePage(),//Scaffold()
     );
   }
 
