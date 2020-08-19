@@ -1,3 +1,7 @@
+import 'package:Lesson2/screens/formdemo_screen.dart';
+import 'package:Lesson2/screens/listdemo_screen.dart';
+import 'package:Lesson2/screens/profileeditdemo_screen.dart';
+import 'package:Lesson2/screens/taponlistdemo_screen.dart';
 import 'package:Lesson2/screens/widgetlifecycle_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +28,23 @@ static const routeName= '/startScreen';
               RaisedButton(
                 onPressed: ()=> Navigator.pushNamed(context, WidgetLifeCycleScreen.routeName),
                 child:Text('widgetlifecycle Demo'),
-              )
+              ),
+              RaisedButton(
+                onPressed: ()=> Navigator.pushNamed(context, ListDemoScreen.routeName),
+                child:Text('List Demo'),
+              ),
+              RaisedButton(
+                onPressed: ()=> Navigator.pushNamed(context, TapOnListScreen.routeName),
+                child:Text('Tap On List Demo'),
+              ),
+//              RaisedButton(
+//                onPressed: ()=> Navigator.pushNamed(context, FormDemoScreen.routeName),
+//                child:Text('Form  Demo'),
+//              ),
+//              RaisedButton(
+//                onPressed: ()=> Navigator.pushNamed(context, ProfileEditScreen.routeName),
+//                child:Text('Profile Edit Demo'),
+//              )
             ]
           )
         ),
