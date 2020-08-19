@@ -15,7 +15,7 @@ enum Language{
   Java,
   Cpp,
 }
-class ProfileEdit{
+class Profile{
   String name;
   int age;
   Classification classification;
@@ -26,7 +26,7 @@ class ProfileEdit{
   Language.Cpp: false,
 
   };
-  ProfileEdit({
+  Profile({
     this.name= '',
     this.age= 0,
     this.classification = Classification.freshman,

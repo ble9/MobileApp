@@ -1,7 +1,8 @@
 import 'package:Lesson2/screens/counterdemo_screen.dart';
 import 'package:Lesson2/screens/formdemo_screen.dart';
 import 'package:Lesson2/screens/listdemo_screen.dart';
-import 'package:Lesson2/screens/profileeditdemo_screen.dart';
+import 'package:Lesson2/screens/profile_screen.dart';
+import 'package:Lesson2/screens/profileedit_screen.dart';
 import 'package:Lesson2/screens/start_screens.dart';
 import 'package:Lesson2/screens/taponlistdemo_screen.dart';
 import 'package:Lesson2/screens/userhome_screen.dart';
@@ -23,11 +24,12 @@ class Lesson2App extends StatelessWidget {
         StartScreen.routeName: (context) => StartScreen(),
         CounterDemoScreen.routeName: (context) => CounterDemoScreen(),
         WidgetLifeCycleScreen.routeName: (context) => WidgetLifeCycleScreen(),
-        FormDemoScreen.routeName: (context) => FormDemoScreen(),
-        ProfileEditScreen.routeName: (context) => ProfileEditScreen(),
         ListDemoScreen.routeName: (context) => ListDemoScreen(),
         TapOnListScreen.routeName: (context) => TapOnListScreen(),
+        //part2
+        FormDemoScreen.routeName: (context) => FormDemoScreen(),
         UserHomeScreen.routeName: (context) => UserHomeScreen(),
+        ProfileScreen.routeName: (context) => ProfileScreen(),
 
       },
     );
