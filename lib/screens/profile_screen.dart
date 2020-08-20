@@ -1,4 +1,4 @@
-import 'package:Lesson2/model/profilee.dart';
+import 'package:Lesson2/model/profile.dart';
 import 'package:Lesson2/screens/profileedit_screen.dart';
 import 'package:flutter/material.dart';
 

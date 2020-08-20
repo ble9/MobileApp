@@ -1,11 +1,8 @@
-import 'dart:html';
-
-import 'package:Lesson2/model/profilee.dart';
+import 'package:Lesson2/model/profile.dart';
 import 'package:flutter/material.dart';
-
 //
 class ProfileEditScreen extends StatefulWidget {
-  static const routeName = '/ProfileEditScreen';
+  static const routeName = '/profileScreen/profileEditScreen';
 
 //
   @override
@@ -25,9 +22,8 @@ class _ProfileEditState extends State<ProfileEditScreen> {
     con = _Controller(this);
   }
 
-  void render(fn) {
-    setState(fn);
-  }
+  void render(fn) => setState(fn);
+
 
   @override
   Widget build(BuildContext context) {
@@ -96,16 +92,42 @@ class _ProfileEditState extends State<ProfileEditScreen> {
                 ],
               ),
             ),
-          ],
+            Text('Classification'),
+            DropdownButtonFormField(
+              hint: Text('classification'),
+              value: profile.classification,
+              onChanged: con.onChangedClassification,
+              items: con.getClassificationList(),
+            ),
+            Text('Language Proficiency'),
+            Row(
+              children: <Widget>[
+                Checkbox(
+                  value: profile.Languages[Language.Dart],
+                  onChanged: con.onChangedDart,
+                ),
+                Text(Language.Dart.toString().split('.')[1]),
+                Checkbox(
+                  value: profile.Languages[Language.Java],
+                  onChanged: con.onChangedJava,
+                ),
+                Text(Language.Java.toString().split('.')[1]),
+                Checkbox(
+                  value: profile.Languages[Language.Cpp],
+                  onChanged: con.onChangedCpp,
+                ),
+                Text(Language.Cpp.toString().split('.')[1]),
+              ],
+            )
+              ],
+           ),
         ),
-      ),
-    );
+      );
   }
 }
 
 class _Controller {
   _ProfileEditState _state;
-
   _Controller(this._state);
 
   String validatorName(String value) {
@@ -127,17 +149,43 @@ class _Controller {
       else
         return 'required: Age 5';
     } catch (e) {
-      return 'not an intek'
-          'ger';
+      return 'not an inte';
     }
   }
 
   void onSavedAge(String value) {
     _state.profile.age = int.parse(value);
   }
-  void onChangedMajor(Major m){
-    _state.render((){
-    _state.profile.major = m;
+  void onChangedMajor(Major m) {
+    _state.render(() {
+      _state.profile.major = m;
     });
   }
-}
+    List getClassificationList(){
+      return Classification.values.map((c){
+        return DropdownMenuItem(
+          value: c,
+          child: Text(c.toString().split('.')[1]),
+        );
+      }).toList();
+    }
+    void onChangedClassification(Classification c){
+      _state.profile.classification = c;
+    }
+
+  void onChangedDart(bool checked) {
+    _state.render((){
+      _state.profile.Languages[Language.Dart]=checked;
+    });
+  }
+  void onChangedJava(bool checked) {
+    _state.render((){
+      _state.profile.Languages[Language.Java]=checked;
+    });
+  }
+    void onChangedCpp(bool checked) {
+    _state.render((){
+    _state.profile.Languages[Language.Cpp]=checked;
+        });
+    }
+  }

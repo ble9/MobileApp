@@ -30,7 +30,7 @@ class Lesson2App extends StatelessWidget {
         FormDemoScreen.routeName: (context) => FormDemoScreen(),
         UserHomeScreen.routeName: (context) => UserHomeScreen(),
         ProfileScreen.routeName: (context) => ProfileScreen(),
-
+        ProfileEditScreen.routeName: (context) => ProfileEditScreen(),
       },
     );
   }
