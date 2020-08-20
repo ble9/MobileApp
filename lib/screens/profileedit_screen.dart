@@ -1,11 +1,9 @@
-import 'dart:html';
-
-import 'package:Lesson2/model/profilee.dart';
+import 'package:Lesson2/model/profile.dart';
 import 'package:flutter/material.dart';
 
 //
 class ProfileEditScreen extends StatefulWidget {
-  static const routeName = '/ProfileEditScreen';
+  static const routeName = '/profileScreen/profileEditScreen';
 
 //
   @override
@@ -25,78 +23,115 @@ class _ProfileEditState extends State<ProfileEditScreen> {
     con = _Controller(this);
   }
 
-  void render(fn) {
-    setState(fn);
-  }
+  void render(fn) => setState(fn);
 
   @override
   Widget build(BuildContext context) {
     profile = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(' EditProfile'),
+        title: Text(' Edit Profile'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.check),
+            onPressed: con.save,
+          )
+        ],
       ),
       body: Form(
         key: formKey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(
-                icon: Icon(Icons.face),
-                labelText: 'Name',
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.face),
+                  labelText: 'Name',
+                ),
+                autocorrect: false,
+                initialValue: profile.name,
+                validator: con.validatorName,
+                onSaved: con.onSavedName,
               ),
-              autocorrect: false,
-              initialValue: profile.name,
-              validator: con.validatorName,
-              onSaved: con.onSavedName,
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                icon: Icon(Icons.today),
-                labelText: 'Age',
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.today),
+                  labelText: 'Age',
+                ),
+                keyboardType: TextInputType.number,
+                initialValue: profile.age.toString(),
+                validator: con.validatorAge,
+                onSaved: con.onSavedAge,
               ),
-              keyboardType: TextInputType.number,
-              initialValue: profile.age.toString(),
-              validator: con.validatorAge,
-              onSaved: con.onSavedAge,
-            ),
-            SizedBox(height: 20.0,),
-            Text('Major'),
-            Container(
-              margin: EdgeInsets.fromLTRB(10.0,0.0,10.0,15.0),
-              decoration: BoxDecoration(
-                border: Border.all(width:2.0, color: Colors.blue),
+              SizedBox(
+                height: 20.0,
               ),
-              child: Row(
+              Text('Major'),
+              Container(
+                margin: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 15.0),
+                decoration: BoxDecoration(
+                  border: Border.all(width: 2.0, color: Colors.blue),
+                ),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: RadioListTile(
+                        title: Text(Major.CS.toString().split('.')[1]),
+                        value: Major.CS,
+                        groupValue: profile.major,
+                        onChanged: con.onChangedMajor,
+                      ),
+                    ),
+                    Expanded(
+                      child: RadioListTile(
+                        title: Text(Major.SE.toString().split('.')[1]),
+                        value: Major.SE,
+                        groupValue: profile.major,
+                        onChanged: con.onChangedMajor,
+                      ),
+                    ),
+                    Expanded(
+                      child: RadioListTile(
+                        title: Text(Major.Other.toString().split('.')[1]),
+                        value: Major.Other,
+                        groupValue: profile.major,
+                        onChanged: con.onChangedMajor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Text('Classification'),
+              DropdownButtonFormField(
+                hint: Text('classification'),
+                value: profile.classification,
+                onChanged: con.onChangedClassification,
+                items: con.getClassificationList(),
+              ),
+              Text('Language Proficiency'),
+              Row(
                 children: <Widget>[
-                  Expanded(
-                    child: RadioListTile(
-                      title: Text(Major.CS.toString().split('.')[1]),
-                      value: Major.CS,
-                      groupValue: profile.major,
-                      onChanged: con.onChangedMajor,
-                    ),
+                  Checkbox(
+                    value: profile.Languages[Language.Dart],
+                    onChanged: con.onChangedDart,
                   ),
-                  Expanded(
-                    child: RadioListTile(
-                      title: Text(Major.SE.toString().split('.')[1]),
-                      value: Major.SE,
-                      groupValue: profile.major,
-                      onChanged: con.onChangedMajor,
-                    ),
+                  Text(Language.Dart.toString().split('.')[1]),
+                  Checkbox(
+                    value: profile.Languages[Language.Java],
+                    onChanged: con.onChangedJava,
                   ),
-                  Expanded(
-                    child: RadioListTile(
-                      title: Text(Major.Other.toString().split('.')[1]),
-                      value: Major.Other,
-                      groupValue: profile.major,
-                      onChanged: con.onChangedMajor,
-                    ),
+                  Text(Language.Java.toString().split('.')[1]),
+                  Checkbox(
+                    value: profile.Languages[Language.Cpp],
+                    onChanged: con.onChangedCpp,
                   ),
+                  Text(Language.Cpp.toString().split('.')[1]),
                 ],
-              ),
-            ),
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -105,8 +140,14 @@ class _ProfileEditState extends State<ProfileEditScreen> {
 
 class _Controller {
   _ProfileEditState _state;
-
   _Controller(this._state);
+
+  void save(){
+    if (_state.formKey.currentState.validate()){
+      _state.formKey.currentState.save();
+      Navigator.pop(_state.context, _state.profile);
+    }
+  }
 
   String validatorName(String value) {
     if (value.length < 2)
@@ -127,17 +168,48 @@ class _Controller {
       else
         return 'required: Age 5';
     } catch (e) {
-      return 'not an intek'
-          'ger';
+      return 'not an inte';
     }
   }
 
   void onSavedAge(String value) {
     _state.profile.age = int.parse(value);
   }
-  void onChangedMajor(Major m){
-    _state.render((){
-    _state.profile.major = m;
+
+  void onChangedMajor(Major m) {
+    _state.render(() {
+      _state.profile.major = m;
+    });
+  }
+
+  List getClassificationList() {
+    return Classification.values.map((c) {
+      return DropdownMenuItem(
+        value: c,
+        child: Text(c.toString().split('.')[1]),
+      );
+    }).toList();
+  }
+
+  void onChangedClassification(Classification c) {
+    _state.profile.classification = c;
+  }
+
+  void onChangedDart(bool checked) {
+    _state.render(() {
+      _state.profile.Languages[Language.Dart] = checked;
+    });
+  }
+
+  void onChangedJava(bool checked) {
+    _state.render(() {
+      _state.profile.Languages[Language.Java] = checked;
+    });
+  }
+
+  void onChangedCpp(bool checked) {
+    _state.render(() {
+      _state.profile.Languages[Language.Cpp] = checked;
     });
   }
 }

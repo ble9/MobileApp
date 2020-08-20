@@ -1,6 +1,6 @@
 import 'package:Lesson2/screens/formdemo_screen.dart';
 import 'package:Lesson2/screens/listdemo_screen.dart';
-import 'package:Lesson2/screens/profileedit_screen.dart';
+import 'package:Lesson2/screens/profile_screen.dart';
 import 'package:Lesson2/screens/taponlistdemo_screen.dart';
 import 'package:Lesson2/screens/widgetlifecycle_screen.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,8 @@ static const routeName= '/startScreen';
       ),
         body: SingleChildScrollView(
           child:  Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children:<Widget>[
               RaisedButton(
                 onPressed: ()=> Navigator.pushNamed(context, CounterDemoScreen.routeName),
@@ -37,15 +39,15 @@ static const routeName= '/startScreen';
                 onPressed: ()=> Navigator.pushNamed(context, TapOnListScreen.routeName),
                 child:Text('Tap On List Demo'),
               ),
-//part2
-//              RaisedButton(
-//                onPressed: ()=> Navigator.pushNamed(context, FormDemoScreen.routeName),
-//                child:Text('Form  Demo'),
-//              ),
-//              RaisedButton(
-//                onPressed: ()=> Navigator.pushNamed(context, ProfileScreen.routeName),
-//                child:Text('Profile Edit Demo'),
-//              )
+              //part2
+              RaisedButton(
+                onPressed: ()=> Navigator.pushNamed(context, FormDemoScreen.routeName),
+                child:Text('Form  Demo'),
+              ),
+              RaisedButton(
+                onPressed: ()=> Navigator.pushNamed(context, ProfileScreen.routeName),
+                child:Text('Profile Edit Demo'),
+              )
             ]
           )
         ),

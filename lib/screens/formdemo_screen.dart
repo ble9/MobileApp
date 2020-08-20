@@ -27,7 +27,7 @@ class _FormDemoState extends State<FormDemoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('widget life cycle'),
+        title: Text('form demo'),
       ),
       body: Form(
         key: formKey,

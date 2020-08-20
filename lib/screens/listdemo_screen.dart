@@ -14,9 +14,9 @@ class _ListDemoState extends State<ListDemoScreen> {
   _Controller con;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    con=_Controller(this);
+    con = _Controller(this);
   }
 
   @override
@@ -27,8 +27,8 @@ class _ListDemoState extends State<ListDemoScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-            children: con.getCourseList(),
-          ),
+          children: con.getCourseList(),
+        ),
       ),
     );
   }
@@ -36,38 +36,48 @@ class _ListDemoState extends State<ListDemoScreen> {
 
 class _Controller {
   _ListDemoState _state;
+
   _Controller(this._state);
 
-List<Widget> getCourseList() {
-return courseList.map((course){
-  return Card(
-    margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-    color:Colors.lime[400],
-    elevation: 10.0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    ),
-    child: Column(
-      crossAxisAlignment:  CrossAxisAlignment.start,
-      children: <Widget>[
-        Row(
+  List<Widget> getCourseList() {
+    return courseList.map((course) {
+      return Card(
+        margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+        color: Colors.lime[400],
+        elevation: 10.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Image.network(course.imageUrl, width: 200.0,),
-            SizedBox(width: 15.0),
-            Text(course.number, style: TextStyle(fontSize: 20.0),),
+            Row(
+              children: <Widget>[
+                Image.network(
+                  course.imageUrl,
+                  width: 200.0,
+                ),
+                SizedBox(width: 15.0),
+                Text(
+                  course.number,
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ],
+            ),
+            Text(
+              course.title,
+              style: TextStyle(fontSize: 25.0),
+            ),
+            Row(
+              children: <Widget>[
+                Text('prerequisite'),
+                SizedBox(width: 20.0),
+                Text(course.prereq),
+              ],
+            ),
           ],
         ),
-        Text(course.title, style: TextStyle(fontSize: 25.0),),
-        Row(
-          children: <Widget>[
-            Text('prerequisite'),
-            SizedBox(width:20.0),
-            Text(course.prereq),
-          ],
-        ),
-      ],
-    ),
-  );
-}).toList();
-}
+      );
+    }).toList();
+  }
 }

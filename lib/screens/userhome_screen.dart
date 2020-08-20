@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class UserHomeScreen extends StatelessWidget{
+class UserHomeScreen extends StatelessWidget {
   static const routeName = '/formDemoScreen/userHomeScreen';
-  @override
-  Widget build(BuildContext context){
 
-    Map userInfo=ModalRoute.of(context).settings.arguments;
+  @override
+  Widget build(BuildContext context) {
+    Map userInfo = ModalRoute.of(context).settings.arguments;
 
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: Scaffold(
         appBar: AppBar(
-          title:Text ('User Home'),
+          title: Text('User Home'),
         ),
-        body:Text(
-            "Email: ${userInfo['email']}\n Password: ${userInfo['password']}",
-            style: TextStyle(fontSize:20.0),
-            ),
+        body: Text(
+          "Email: ${userInfo['email']}\n Password: ${userInfo['password']}",
+          style: TextStyle(fontSize: 20.0),
+        ),
       ),
     );
   }
