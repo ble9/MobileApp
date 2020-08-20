@@ -20,6 +20,8 @@ static const routeName= '/startScreen';
       ),
         body: SingleChildScrollView(
           child:  Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children:<Widget>[
               RaisedButton(
                 onPressed: ()=> Navigator.pushNamed(context, CounterDemoScreen.routeName),

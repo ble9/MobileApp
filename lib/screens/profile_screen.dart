@@ -20,9 +20,7 @@ class _ProfileEditState extends State<ProfileScreen> {
     con = _Controller(this);
   }
 
-  void render(fn) {
-    setState(fn);
-  }
+  void render(fn) => setState(fn);
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +60,13 @@ class _ProfileEditState extends State<ProfileScreen> {
                 'Major: ${con.profile.major.toString().split(".")[1]}',
                 style: TextStyle(fontSize: 20.0),
               ),
-              SizedBox( height: 20.0,),
-              Text('Language PRoficiency', style: TextStyle(fontSize: 20.0),),
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                'Language PRoficiency',
+                style: TextStyle(fontSize: 20.0),
+              ),
               Row(
                 children: <Widget>[
                   Checkbox(
@@ -101,10 +104,16 @@ class _ProfileEditState extends State<ProfileScreen> {
 
 class _Controller {
   _ProfileEditState _state;
-  Profile profile= Profile();
+  Profile profile = Profile();
+
   _Controller(this._state);
 
-  void edit(){
-    Navigator.pushNamed(_state.context, ProfileEditScreen.routeName, arguments: profile);
+  void edit() async {
+    var result= await Navigator.pushNamed(
+        _state.context, ProfileEditScreen.routeName,
+        arguments: Profile.clone(profile));
+    if (result != null) {
+    _state.render(() => profile = result);
+    }
   }
 }

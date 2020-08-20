@@ -26,7 +26,7 @@ class Lesson2App extends StatelessWidget {
         WidgetLifeCycleScreen.routeName: (context) => WidgetLifeCycleScreen(),
         ListDemoScreen.routeName: (context) => ListDemoScreen(),
         TapOnListScreen.routeName: (context) => TapOnListScreen(),
-        //part2
+        //part2 edit out for submitting part 1 and 2
         FormDemoScreen.routeName: (context) => FormDemoScreen(),
         UserHomeScreen.routeName: (context) => UserHomeScreen(),
         ProfileScreen.routeName: (context) => ProfileScreen(),

@@ -18,21 +18,20 @@ class _TapOnListState extends State<TapOnListScreen> {
     super.initState();
     con = _Controller(this);
   }
+
   void render(fn) {
     setState(fn);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Tap on list'),
-        actions:<Widget>[
-          IconButton(
-            icon:Icon(Icons.delete),
-            onPressed: con.delete,
-          )
-        ]
-      ),
+      appBar: AppBar(title: Text('Tap on list'), actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.delete),
+          onPressed: con.delete,
+        )
+      ]),
       body: ListView.builder(
         itemCount: courseList.length,
         itemBuilder: con.getListTile,
@@ -50,7 +49,8 @@ class _Controller {
     return Container(
       padding: EdgeInsets.all(10.0),
       margin: EdgeInsets.all(10.0),
-      color: courseList[index].selected ? Colors.indigo[400] : Colors.indigo[200],
+      color:
+          courseList[index].selected ? Colors.indigo[400] : Colors.indigo[200],
       child: ListTile(
         title: Text(courseList[index].number),
         subtitle: Text(courseList[index].title),
@@ -61,13 +61,14 @@ class _Controller {
   }
 
   void _onLongPress(BuildContext context, int index) {
-    _state.render((){
+    _state.render(() {
       courseList[index].selected = !courseList[index].selected;
     });
   }
-  void delete(){
+
+  void delete() {
     _state.render(() => courseList.removeWhere((course) => course.selected));
-    }
+  }
 
   void _onTap(BuildContext context, int index) async {
     await showDialog(
