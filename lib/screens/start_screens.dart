@@ -40,14 +40,14 @@ static const routeName= '/startScreen';
                 child:Text('Tap On List Demo'),
               ),
               //part2
-              RaisedButton(
-                onPressed: ()=> Navigator.pushNamed(context, FormDemoScreen.routeName),
-                child:Text('Form  Demo'),
-              ),
-              RaisedButton(
-                onPressed: ()=> Navigator.pushNamed(context, ProfileScreen.routeName),
-                child:Text('Profile Edit Demo'),
-              )
+//               RaisedButton(
+//                 onPressed: ()=> Navigator.pushNamed(context, FormDemoScreen.routeName),
+//                 child:Text('Form  Demo'),
+//               ),
+//               RaisedButton(
+//                 onPressed: ()=> Navigator.pushNamed(context, ProfileScreen.routeName),
+//                 child:Text('Profile Edit Demo'),
+//               )
             ]
           )
         ),
